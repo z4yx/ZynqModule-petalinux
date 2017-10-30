@@ -18,7 +18,23 @@
                 drv-vbus;
                 //reset pins not supported yet
         };
+
+
+	dm9000@44000000 {
+		compatible = "davicom,dm9000";
+		reg = <0x44000000 0x2 0x44000004 0x2>;
+		local-mac-address = [00 00 de ad be ef];
+		davicom,no-eeprom;
+
+		interrupt-parent = <&intc>;
+		interrupts = <0 29 4>; //IRQF2P[0]
+		//reset-gpios = <&gpf 12 GPIO_ACTIVE_LOW>;
+		//vcc-supply = <&eth0_power>;
+	};
 };
+//&axi_dm9k_0 {
+//        status = "disabled";
+//};
 &usb0 {
         status = "okay";
         dr_mode = "host";
